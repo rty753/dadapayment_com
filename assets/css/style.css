@@ -9,12 +9,12 @@
   --bg-card-hover: #F5F0E8;
   --accent-blue: #1A6B4F;
   --accent-blue-hover: #145840;
-  --accent-cyan: #2E8B6E;
-  --accent-gradient: linear-gradient(135deg, #1A6B4F, #2E8B6E);
-  --accent-gradient-r: linear-gradient(135deg, #2E8B6E, #1A6B4F);
+  --accent-cyan: #247A5E;
+  --accent-gradient: linear-gradient(135deg, #1A6B4F, #247A5E);
+  --accent-gradient-r: linear-gradient(135deg, #247A5E, #1A6B4F);
   --text-white: #2D2A26;
   --text-gray: #4A4540;
-  --text-muted: #7A7570;
+  --text-muted: #5C5550;
   --border-color: #E8E0D6;
   --border-light: #D9CEBD;
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -361,9 +361,9 @@ pre code { background: none; padding: 0; word-break: normal; }
 .blog-card-img { height: 200px; background: linear-gradient(135deg, rgba(26,107,79,0.1), rgba(46,139,110,0.05)); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
 .blog-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
 .blog-card-date { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
-.blog-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
-.blog-card h3 a { color: var(--text-white); }
-.blog-card h3 a:hover { color: var(--accent-cyan); }
+.blog-card h3, .blog-card h2 { font-size: 1.15rem; margin-bottom: 0.6rem; }
+.blog-card h3 a, .blog-card h2 a { color: var(--text-white); }
+.blog-card h3 a:hover, .blog-card h2 a:hover { color: var(--accent-cyan); }
 .blog-card p { color: var(--text-muted); font-size: 0.9rem; flex: 1; }
 
 .article-content { max-width: 800px; margin: 0 auto; }
@@ -409,7 +409,7 @@ pre code { background: none; padding: 0; word-break: normal; }
 .site-footer { background: #F0EBE3; border-top: 1px solid var(--border-color); padding: 4rem 0 0; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 3rem; }
 .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; max-width: 300px; }
-.footer-col h4 { color: var(--text-white); font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.footer-col h3 { color: var(--text-white); font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .footer-links { list-style: none; padding: 0; }
 .footer-links li { margin-bottom: 0.5rem; }
 .footer-links a { color: var(--text-muted); font-size: 0.9rem; transition: color var(--transition); }
@@ -1009,4 +1009,49 @@ pre.code-block { overflow-x: auto; }
 @media (max-width: 768px) {
   .grid--2 { grid-template-columns: 1fr; }
   .grid--3 { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   ACCESSIBILITY: Body content link underlines
+   Links must not rely solely on color (WCAG 1.4.1)
+   ============================================ */
+.article-content a,
+.content-section a:not(.btn):not(.card):not(.market-card):not(.related-card),
+.content-block a,
+.faq-answer-inner a,
+.faq-answer a,
+.faq__answer a,
+.feature-content a,
+p a,
+li a:not(.footer-links a):not(.breadcrumb-list a):not(.dropdown-menu a):not(.breadcrumb__list a) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Exclude navigation, footer, breadcrumb, button, and card links from underline */
+.main-nav a,
+.footer-links a,
+.breadcrumb-list a,
+.breadcrumb__item a,
+.breadcrumb-item a,
+.dropdown-menu a,
+.btn,
+.card a,
+a.card,
+a.market-card,
+a.related-card,
+a.blog-card,
+a.link-card,
+a.logo,
+a.floating-cta,
+a.header-cta,
+.card-link,
+.blog-card h3 a,
+.blog-card h2 a,
+.hero-ctas a,
+.cta-buttons a,
+.cta-actions a,
+.cta-block__actions a,
+.error-buttons a {
+  text-decoration: none;
 }
